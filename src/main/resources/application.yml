@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: parcel-cost-calculator
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
