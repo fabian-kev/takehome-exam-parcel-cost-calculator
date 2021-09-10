@@ -2,7 +2,7 @@ package com.fabiankevin.parcel.deliverycostcalculator.api.service;
 
 import com.fabiankevin.parcel.deliverycostcalculator.api.interactor.GetParcelRules;
 import com.fabiankevin.parcel.deliverycostcalculator.component.constant.ParcelRuleType;
-import com.fabiankevin.parcel.deliverycostcalculator.component.domain.dto.request.ParcelBody;
+import com.fabiankevin.parcel.deliverycostcalculator.component.domain.dto.request.ParcelForm;
 import com.fabiankevin.parcel.deliverycostcalculator.component.domain.dto.response.ParcelResource;
 import com.fabiankevin.parcel.deliverycostcalculator.component.domain.model.Parcel;
 import com.fabiankevin.parcel.deliverycostcalculator.api.interactor.ApplyVoucher;
@@ -26,10 +26,9 @@ public class ParcelCalculatorServiceImpl implements ParcelCalculatorService {
     private final GetParcelRules getParcelRules;
 
     @Override
-    public ParcelResource computeDeliveryCost(ParcelBody parcelBody) {
-        log.info(parcelBody.toString());
-        Parcel parcel = parcelMapper.toModel(parcelBody);
-
+    public ParcelResource computeDeliveryCost(ParcelForm parcelForm) {
+        log.info(parcelForm.toString());
+        Parcel parcel = parcelMapper.toModel(parcelForm);
 
         Double price = computeCostBasedOnRules(parcel);
 
@@ -46,7 +45,7 @@ public class ParcelCalculatorServiceImpl implements ParcelCalculatorService {
                 .build();
     }
     private Double computeCostBasedOnRules(Parcel parcel){
-        System.out.println("Parcel: "+parcel);
+        log.info("Parcel: "+parcel);
         List<ParcelRule> parcelRules = getParcelRules.execute();
         Double volume = parcel.getVolume().getVolumeValue();
         Double weight = parcel.getWeight();

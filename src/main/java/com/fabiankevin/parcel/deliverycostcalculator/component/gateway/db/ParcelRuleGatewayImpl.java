@@ -16,6 +16,6 @@ public class ParcelRuleGatewayImpl implements ParcelRuleGateway {
     private final ParcelRuleMapper parcelRuleMapper;
     @Override
     public List<ParcelRule> getParcelRules() {
-        return parcelRuleMapper.toModelList(parcelRuleRepository.findAll());
+        return parcelRuleMapper.toModels(parcelRuleRepository.findAll());
     }
 }

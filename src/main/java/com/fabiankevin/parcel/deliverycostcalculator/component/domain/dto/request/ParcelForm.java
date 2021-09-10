@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 
 @Data
-public class ParcelBody {
+public class ParcelForm {
     private String voucherCode;
     @NotNull(message = "Volume object is required")
     private Volume volume;

@@ -24,8 +24,7 @@ public class ApplyVoucherImpl implements ApplyVoucher {
         } catch (FeignException e) {
             throw new VoucherException.VoucherNotExist();
         }
-
-        if(LocalDate.now().isBefore(voucher.getExpiry())){
+        if(LocalDate.now().isAfter(voucher.getExpiry())){
             throw new VoucherException.VoucherExpired();
         }
 
