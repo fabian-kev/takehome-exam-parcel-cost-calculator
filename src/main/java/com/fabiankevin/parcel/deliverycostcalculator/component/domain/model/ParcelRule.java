@@ -15,7 +15,9 @@ public class ParcelRule {
     private Double cost;
     private ParcelRuleStatus status;
     private ParcelRuleType type;
-    private Double conditionValue;
+    private Double conditionMin;
+    private Double conditionMax;
+
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 }

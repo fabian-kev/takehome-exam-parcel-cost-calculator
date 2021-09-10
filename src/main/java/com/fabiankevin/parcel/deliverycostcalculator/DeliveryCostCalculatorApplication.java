@@ -3,8 +3,11 @@ package com.fabiankevin.parcel.deliverycostcalculator;
 import com.fabiankevin.parcel.deliverycostcalculator.component.constant.ParcelRuleStatus;
 import com.fabiankevin.parcel.deliverycostcalculator.component.constant.ParcelRuleType;
 import com.fabiankevin.parcel.deliverycostcalculator.component.domain.entity.ParcelRuleEntity;
+import com.fabiankevin.parcel.deliverycostcalculator.component.gateway.remote.VoucherGateway;
 import com.fabiankevin.parcel.deliverycostcalculator.component.repository.ParcelRuleRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -15,13 +18,12 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableFeignClients
-public class DeliveryCostCalculatorApplication {
-    @Autowired
-    private ParcelRuleRepository parcelRuleRepository;
+@RequiredArgsConstructor
+public class DeliveryCostCalculatorApplication{
+    private final ParcelRuleRepository parcelRuleRepository;
     public static void main(String[] args) {
         SpringApplication.run(DeliveryCostCalculatorApplication.class, args);
     }
-
 
     @PostConstruct
     public void loadInitialParcelRules() {
@@ -33,7 +35,8 @@ public class DeliveryCostCalculatorApplication {
                         .priority(1)
                         .status(ParcelRuleStatus.ACTIVE)
                         .type(ParcelRuleType.WEIGHT_VALIDATION)
-                        .conditionValue(50.0)
+                        .conditionMin(50.0)
+                        .conditionMax(Double.MAX_VALUE)
                         .build(),
 
                 ParcelRuleEntity.builder()
@@ -43,7 +46,8 @@ public class DeliveryCostCalculatorApplication {
                         .priority(2)
                         .status(ParcelRuleStatus.ACTIVE)
                         .type(ParcelRuleType.WEIGHT)
-                        .conditionValue(10.0)
+                        .conditionMin(10.0)
+                        .conditionMax(Double.MAX_VALUE)
                         .build(),
 
                 ParcelRuleEntity.builder()
@@ -53,7 +57,8 @@ public class DeliveryCostCalculatorApplication {
                         .priority(3)
                         .status(ParcelRuleStatus.ACTIVE)
                         .type(ParcelRuleType.VOLUME)
-                        .conditionValue(1500.0)
+                        .conditionMin(0.0)
+                        .conditionMax(1500.0)
                         .build(),
 
                 ParcelRuleEntity.builder()
@@ -63,7 +68,8 @@ public class DeliveryCostCalculatorApplication {
                         .priority(4)
                         .status(ParcelRuleStatus.ACTIVE)
                         .type(ParcelRuleType.VOLUME)
-                        .conditionValue(2500.0)
+                        .conditionMin(1500.0)
+                        .conditionMax(2500.0)
                         .build(),
 
                 ParcelRuleEntity.builder()
@@ -73,11 +79,11 @@ public class DeliveryCostCalculatorApplication {
                         .priority(5)
                         .status(ParcelRuleStatus.ACTIVE)
                         .type(ParcelRuleType.VOLUME)
-                        .conditionValue(2500.0)
+                        .conditionMin(2500.0)
+                        .conditionMax(Double.MAX_VALUE)
                         .build()
         );
 
         parcelRuleRepository.saveAll(rules);
     }
-
 }

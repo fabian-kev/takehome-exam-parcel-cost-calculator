@@ -25,7 +25,8 @@ public class ParcelRuleEntity {
     private Double cost;
     private ParcelRuleStatus status;
     private ParcelRuleType type;
-    private Double conditionValue;
+    private Double conditionMin;
+    private Double conditionMax;
     @Builder.Default
     private LocalDateTime createdDate = LocalDateTime.now();
     @Builder.Default

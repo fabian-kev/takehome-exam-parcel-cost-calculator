@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ParcelResponse {
+public class ParcelResource {
     private Double price;
-    private String voucherCodeUsed;
-    private Double discountRate;
 }
