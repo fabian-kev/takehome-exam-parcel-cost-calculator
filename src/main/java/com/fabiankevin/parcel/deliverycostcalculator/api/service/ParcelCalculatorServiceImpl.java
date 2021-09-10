@@ -23,6 +23,7 @@ public class ParcelCalculatorServiceImpl implements ParcelCalculatorService {
     private final ParcelMapper parcelMapper;
     private final ApplyVoucher applyVoucher;
     private final GetParcelRules getParcelRules;
+
     @Override
     public ParcelResponse calculateDeliveryCost(ParcelBody parcelBody) {
         log.info(parcelBody.toString());
@@ -35,27 +36,29 @@ public class ParcelCalculatorServiceImpl implements ParcelCalculatorService {
         Double price = 0.0;
 
 
-        for( ParcelRule rule : parcelRules ) {
-            if( rule.getType() == ParcelRuleType.WEIGHT_VALIDATION && weight > rule.getConditionValue()){
+        for (ParcelRule rule : parcelRules) {
+            if (rule.getPriority() == 1 && weight > rule.getConditionValue()) {
                 throw new RuntimeException(String.format("You've exceeded the weight of %sKG", rule.getConditionValue()));
             }
 
-            if( rule.getType() == ParcelRuleType.WEIGHT ){
-                if( weight > rule.getConditionValue() ){
+            if (rule.getPriority() == 2) {
+                if (weight > rule.getConditionValue()) {
+                    System.out.println("weight");
                     price = rule.getCost() * weight;
                 }
             }
 
-            if (rule.getType() == ParcelRuleType.VOLUME){
-                if( volume < rule.getConditionValue()){
-                    System.out.println("???");
-                    price += rule.getCost() * volume;
-                }
-                if( volume > rule.getConditionValue() && rule.getPriority() == 5 ){
-                    price += rule.getCost() * volume;
-                    System.out.println("Price "+price);
-                }
+            if (volume < rule.getConditionValue() && rule.getPriority() == 3) {
+                System.out.println("PROR 3");
 
+                price += rule.getCost() * volume;
+            } else if (volume < rule.getConditionValue() && rule.getPriority() == 4) {
+                System.out.println("PROR 4");
+
+                price += rule.getCost() * volume;
+            } else if(volume > rule.getConditionValue() && rule.getPriority() == 5) {
+                System.out.println("PROR 5");
+                price += rule.getCost() * volume;
             }
 
         }
