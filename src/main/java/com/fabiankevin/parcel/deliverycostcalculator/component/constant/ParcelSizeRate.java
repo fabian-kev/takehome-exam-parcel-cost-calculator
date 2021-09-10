@@ -1,6 +1,6 @@
-package com.fabiankevin.parcel.deliverycostcalculator.constant;
+package com.fabiankevin.parcel.deliverycostcalculator.component.constant;
 
-import com.fabiankevin.parcel.deliverycostcalculator.component.parcel.gateway.domain.model.Volume;
+import com.fabiankevin.parcel.deliverycostcalculator.component.domain.model.Volume;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

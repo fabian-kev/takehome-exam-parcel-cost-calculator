@@ -1,7 +1,7 @@
 package com.fabiankevin.parcel.deliverycostcalculator.controller;
 
-import com.fabiankevin.parcel.deliverycostcalculator.component.parcel.gateway.domain.dto.request.ParcelBody;
-import com.fabiankevin.parcel.deliverycostcalculator.component.parcel.gateway.domain.dto.response.ParcelResponse;
+import com.fabiankevin.parcel.deliverycostcalculator.component.domain.dto.request.ParcelBody;
+import com.fabiankevin.parcel.deliverycostcalculator.component.domain.dto.response.ParcelResponse;
 import com.fabiankevin.parcel.deliverycostcalculator.service.ParcelCalculatorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

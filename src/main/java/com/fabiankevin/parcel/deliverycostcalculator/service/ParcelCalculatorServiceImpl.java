@@ -1,8 +1,8 @@
 package com.fabiankevin.parcel.deliverycostcalculator.service;
 
-import com.fabiankevin.parcel.deliverycostcalculator.component.parcel.gateway.domain.dto.request.ParcelBody;
-import com.fabiankevin.parcel.deliverycostcalculator.component.parcel.gateway.domain.dto.response.ParcelResponse;
-import com.fabiankevin.parcel.deliverycostcalculator.component.parcel.gateway.domain.model.Parcel;
+import com.fabiankevin.parcel.deliverycostcalculator.component.domain.dto.request.ParcelBody;
+import com.fabiankevin.parcel.deliverycostcalculator.component.domain.dto.response.ParcelResponse;
+import com.fabiankevin.parcel.deliverycostcalculator.component.domain.model.Parcel;
 import com.fabiankevin.parcel.deliverycostcalculator.interactor.ApplyVoucher;
 import com.fabiankevin.parcel.deliverycostcalculator.interactor.CalculateDeliveryCost;
 import com.fabiankevin.parcel.deliverycostcalculator.mapper.ParcelMapper;

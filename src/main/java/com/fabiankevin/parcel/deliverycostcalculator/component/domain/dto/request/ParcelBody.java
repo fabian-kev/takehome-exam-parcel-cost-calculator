@@ -1,4 +1,4 @@
-package com.fabiankevin.parcel.deliverycostcalculator.component.parcel.gateway.domain.dto.request;
+package com.fabiankevin.parcel.deliverycostcalculator.component.domain.dto.request;
 
 import lombok.Data;
 

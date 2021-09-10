@@ -1,7 +1,8 @@
 package com.fabiankevin.parcel.deliverycostcalculator.interactor;
 
-import com.fabiankevin.parcel.deliverycostcalculator.constant.ParcelSizeRate;
-import com.fabiankevin.parcel.deliverycostcalculator.component.parcel.gateway.domain.model.Parcel;
+import com.fabiankevin.parcel.deliverycostcalculator.component.constant.ParcelSizeRate;
+import com.fabiankevin.parcel.deliverycostcalculator.component.domain.model.Parcel;
+import com.fabiankevin.parcel.deliverycostcalculator.component.constant.ParcelWeightRate;
 import org.springframework.stereotype.Service;
 
 
@@ -15,12 +16,11 @@ public class CalculateDeliveryCostImpl implements CalculateDeliveryCost {
         ParcelSizeRate rate;
 
         if( weight > 10){
-            amount = 20 * weight;
+            amount = ParcelWeightRate.HEAVY_PARCEL.getWeight() * weight;
         }
-
         if( volume < 1500 ){
             rate = ParcelSizeRate.SMALL;
-        } else if(volume < 2500) {
+        } else if(volume > 1500 && volume < 2500) {
             rate = ParcelSizeRate.MEDIUM;
         } else {
             rate = ParcelSizeRate.LARGE;

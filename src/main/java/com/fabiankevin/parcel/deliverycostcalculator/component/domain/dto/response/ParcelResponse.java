@@ -1,4 +1,4 @@
-package com.fabiankevin.parcel.deliverycostcalculator.component.parcel.gateway.domain.dto.response;
+package com.fabiankevin.parcel.deliverycostcalculator.component.domain.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
